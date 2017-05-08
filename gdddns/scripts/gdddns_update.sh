@@ -74,6 +74,6 @@ if [ "$?" -eq "0" ]; then
         dbus set gdddns_last_act="<font color=blue>$now    解析已更新，当前解析IP: $ip</font>"
     fi 
 else
-    dbus set gdddns_last_act="<font color=read>$now    域名解析失败！</font>"
+    dbus set gdddns_last_act="<font color=red>$now    域名解析失败！</font>"
 fi
 
