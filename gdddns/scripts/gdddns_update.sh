@@ -33,7 +33,7 @@ enc() {
 update_record() {
     curl -kLsX PUT -H "Authorization: sso-key $gdddns_key:$gdddns_secret" \
         -H "Content-type: application/json" "https://api.godaddy.com/v1/domains/$gdddns_domain/records/A/$(enc "$gdddns_name")" \
-        -d "{\"data\":\"$current_ip\",\"ttl\":$gdddns_ttl}"
+        -d "{\"data\":\"$ip\",\"ttl\":$gdddns_ttl}"
 }
 
 now=`date "+%Y-%m-%d %H:%M:%S"`
@@ -71,7 +71,9 @@ if [ "$?" -eq "0" ]; then
     else
         echo "changing"
         update_record
-        dbus set gdddns_last_act="<font color=blue>$now    解析已更新，当前解析IP: $current_ip</font>"
+        dbus set gdddns_last_act="<font color=blue>$now    解析已更新，当前解析IP: $ip</font>"
     fi 
+else
+    dbus set gdddns_last_act="<font color=read>$now    域名解析失败！</font>"
 fi
 
