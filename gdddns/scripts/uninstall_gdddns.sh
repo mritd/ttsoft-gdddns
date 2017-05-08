@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export KSROOT=/jffs$KSROOT
+export KSROOT=/jffs/koolshare
 source $KSROOT/scripts/base.sh
 
 rm $KSROOT/init.d/S98gdddns.sh
