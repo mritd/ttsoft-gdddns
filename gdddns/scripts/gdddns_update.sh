@@ -32,7 +32,7 @@ enc() {
 
 update_record() {
     curl -kLsX PUT -H "Authorization: sso-key $gdddns_key:$gdddns_secret" \
-        -H "Content-type: application/json" "https://api.godaddy.com/v1/domains/$gdddns_domain/records/A/$(enc "$gdddns_name")" \
+        -H "Content-type: application/json" "https://api.godaddy.com/v1/domains/$gdddns_domain/records/A/$(enc "$gdddns_domain")" \
         -d "{\"data\":\"$ip\",\"ttl\":$gdddns_ttl}"
 }
 
@@ -65,13 +65,17 @@ if [ "$?" -eq "0" ]; then
     current_ip=`echo "$current_ip_info" | grep 'Address 1' | tail -n1 | awk '{print $NF}'`
 
     if [ "$ip" = "$current_ip" ]; then
-        echo "skipping"
+        echo "skipping..."
         dbus set gdddns_last_act="<font color=blue>$now    域名解析正常，跳过更新</font>"
         exit 0
     else
-        echo "changing"
+        echo "changing..."
         update_record
-        dbus set gdddns_last_act="<font color=blue>$now    解析已更新，当前解析IP: $ip</font>"
+        if [ "$?" -eq "0" ]; then
+            dbus set gdddns_last_act="<font color=blue>$now    解析已更新，当前解析IP: $ip</font>"
+        else
+            dbus set gdddns_last_act="<font color=red>$now    解析更新失败！</font>"
+        fi
     fi 
 else
     dbus set gdddns_last_act="<font color=red>$now    域名解析失败！</font>"
