@@ -88,8 +88,8 @@ var option_mode = [['1', 'WAN1'], ['2', 'WAN2'], ['3', 'WAN3'], ['4', 'WAN4']];
 $('#gdddns-fields').forms([
 { title: '开启gdddns', name: 'gdddns_enable', type: 'checkbox', value: ((Apps.gdddns_enable == '1')? 1:0)},
 { title: '上次运行', name: 'gdddns_last_act', text: Apps.gdddns_last_act ||'--' },
-{ title: 'Godaddy Key', name: 'gdddns_key', type: 'text', maxlen: 34, size: 34, value: Apps.gdddns_key },
-{ title: 'Godaddy Secret', name: 'gdddns_secret', type: 'password', maxlen: 34, size: 34, value: Apps.gdddns_secret },
+{ title: 'Godaddy Key', name: 'gdddns_key', type: 'text', maxlen: 50, size: 34, value: Apps.gdddns_key },
+{ title: 'Godaddy Secret', name: 'gdddns_secret', type: 'password', maxlen: 50, size: 34, value: Apps.gdddns_secret },
 { title: '检查周期', name: 'gdddns_interval', type: 'text', maxlen: 5, size: 5, value: Apps.gdddns_interval || '5',suffix:'分钟'},
 { title: '域名', name: 'gdddns_domain', type: 'text', maxlen: 32, size: 34, value: Apps.gdddns_domain || 'home.example.com'},
 { title: 'DNS服务器', name: 'gdddns_dns', type: 'text', maxlen: 15, size: 15, value: Apps.gdddns_dns ||'114.114.114.114',suffix:'<small>查询域名当前IP时使用的DNS解析服务器，默认为 114 DNS</small>'},
