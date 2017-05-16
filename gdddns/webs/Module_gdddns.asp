@@ -86,7 +86,7 @@ function save(){
 <script type="text/javascript">
 var option_mode = [['1', 'WAN1'], ['2', 'WAN2'], ['3', 'WAN3'], ['4', 'WAN4']];
 $('#gdddns-fields').forms([
-{ title: '开启gdddns', name: 'gdddns_enable', type: 'checkbox', value: ((Apps.gdddns_enable == '1')? 1:0)},
+{ title: '开启 Godaddy DDNS', name: 'gdddns_enable', type: 'checkbox', value: ((Apps.gdddns_enable == '1')? 1:0)},
 { title: '上次运行', name: 'gdddns_last_act', text: Apps.gdddns_last_act ||'--' },
 { title: 'Godaddy Key', name: 'gdddns_key', type: 'text', maxlen: 50, size: 34, value: Apps.gdddns_key },
 { title: 'Godaddy Secret', name: 'gdddns_secret', type: 'password', maxlen: 50, size: 34, value: Apps.gdddns_secret },
